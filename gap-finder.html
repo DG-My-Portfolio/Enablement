@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Finance Gap Finder</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap"><style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style><style>
+/* Layout: two-pane workbench — confidence sliders grouped by finance cycle on the left, a live gap report pinned on the right; stacks on phones. */
+:root{
+  --navy:#0B1F44; --blue:#1F5AA8;
+  --bg:#F6F9FC; --surface:#FFFFFF; --surface-2:#EDF3F9; --line:#DCE5EF;
+  --fg:#0B1F44; --muted:#5A6A82; --accent:#1F5AA8; --accent-ink:#FFFFFF; --hl:#A9C8F5;
+  --crit:#C4243F; --crit-bg:#FCE8EC; --gap:#B86A00; --gap-bg:#FFF2DE; --ok:#1F7A4D; --ok-bg:#E3F4EA;
+  --track:#DFE8F1;
+  --hero-a:var(--navy); --hero-b:#163F7A; --hero-c:var(--blue);
+  --font:"Aptos","Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#08132A; --surface:#0F1E3A; --surface-2:#16284A; --line:#22375E;
+  --fg:#EAF2FB; --muted:#9FB1C9; --accent:#7AA9EC; --accent-ink:#06132B; --hl:#A9C8F5;
+  --crit:#FF7B92; --crit-bg:#3A1422; --gap:#F2B354; --gap-bg:#33240E; --ok:#6CD39C; --ok-bg:#12301F;
+  --track:#24395F; --hero-a:#050E22; --hero-b:#0E2E57; --hero-c:#1F5AA8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#08132A; --surface:#0F1E3A; --surface-2:#16284A; --line:#22375E;
+  --fg:#EAF2FB; --muted:#9FB1C9; --accent:#7AA9EC; --accent-ink:#06132B; --hl:#A9C8F5;
+  --crit:#FF7B92; --crit-bg:#3A1422; --gap:#F2B354; --gap-bg:#33240E; --ok:#6CD39C; --ok-bg:#12301F;
+  --track:#24395F; --hero-a:#050E22; --hero-b:#0E2E57; --hero-c:#1F5AA8; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+.recreation{background:var(--surface-2);border-bottom:2px solid var(--accent);padding-inline:16px;padding-block:10px}
+.recreation .wrap{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:13.5px}
+.recreation strong{background:var(--accent);color:var(--accent-ink);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 10px;flex:none}
+.recreation span{color:var(--fg);min-width:0}
+.hero{background:linear-gradient(120deg,var(--hero-a) 0%,var(--hero-b) 65%,var(--hero-c) 100%);color:#fff;padding-block:28px 34px;padding-inline:16px}
+.wrap{max-width:1240px;margin:0 auto}
+.hero .wrap{display:grid;gap:18px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:.8}
+.hero h1{margin:0;font-size:clamp(28px,4.4vw,44px);line-height:1.08;font-weight:800;text-wrap:balance;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--hl)}
+.hero p{margin:0;max-width:62ch;opacity:.88;font-weight:300;font-size:16px}
+.steps{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;font-weight:500;opacity:.92}
+.steps span b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.16);margin-right:6px;font-size:12px}
+
+.client{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-top:4px}
+.field{display:grid;gap:4px;min-width:0}
+.field label{font-size:12px;opacity:.75;font-weight:500}
+.field input,.field select{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 12px;color:#fff;min-width:0;width:100%}
+.field select option{color:#0B1F44}
+.field.grow{flex:1 1 220px}.field.mid{flex:0 1 220px}
+.ghost{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:600;font-size:13px}
+.ghost:hover{background:rgba(255,255,255,.1)}
+
+main{padding-inline:16px;padding-block:26px 40px}
+.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:26px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+.cycle{margin-bottom:22px}
+.cycle h2{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:700;display:flex;justify-content:space-between;gap:10px}
+.cycle h2 span:last-child{letter-spacing:0;text-transform:none;font-weight:600;font-variant-numeric:tabular-nums}
+.proc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:8px;margin-bottom:8px}
+.proc-top{display:flex;gap:12px;justify-content:space-between;align-items:start}
+.proc h3{margin:0;font-size:15.5px;font-weight:700}
+.proc p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
+.score{flex:none;min-width:48px;text-align:center;font-weight:800;font-size:18px;border-radius:10px;padding:4px 8px;font-variant-numeric:tabular-nums}
+.s-crit{background:var(--crit-bg);color:var(--crit)}
+.s-gap{background:var(--gap-bg);color:var(--gap)}
+.s-ok{background:var(--ok-bg);color:var(--ok)}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:999px;background:linear-gradient(90deg,var(--fill) 0 var(--pct),var(--track) var(--pct) 100%)}
+input[type=range]::-moz-range-track{height:8px;border-radius:999px;background:var(--track)}
+input[type=range]::-moz-range-progress{height:8px;border-radius:999px;background:var(--fill)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--surface);border:3px solid var(--fill);margin-top:-7px;box-shadow:0 1px 4px rgba(11,31,68,.25)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--surface);border:3px solid var(--fill);box-shadow:0 1px 4px rgba(11,31,68,.25)}
+.ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:-2px}
+
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:grid;gap:14px}
+@media (max-width:900px){aside{position:static}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.summary{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.gauge{width:112px;height:112px}
+.gauge text{font-family:var(--font)}
+.summary h2{margin:0 0 4px;font-size:18px;font-weight:800;text-wrap:balance}
+.summary p{margin:0;color:var(--muted);font-size:13.5px}
+.counts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pill{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;font-variant-numeric:tabular-nums}
+
+.heat{display:grid;gap:5px;margin-top:4px}
+.heat-row{display:grid;grid-template-columns:minmax(0,150px) 1fr 24px;gap:10px;align-items:center;font-size:12.5px}
+.heat-row span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+.bar{height:8px;border-radius:999px;background:var(--track);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;transition:width .25s ease}
+.heat-row b{text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
+.panel h3{margin:0 0 10px;font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+
+.recs{display:grid;gap:10px}
+.rec{border:1px solid var(--line);border-radius:14px;padding:14px 14px 14px 16px;background:var(--surface);position:relative;overflow:hidden}
+.rec::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--sev)}
+.rec-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.rec h4{margin:0;font-size:15px;font-weight:700}
+.rec .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sev);white-space:nowrap}
+.rec .risk{margin:6px 0 8px;color:var(--muted);font-size:13px}
+.rec .fix{margin:0;font-size:13.5px}
+.rec .fix b{color:var(--accent)}
+.rec .ask{margin:10px 0 0;font-size:12.5px;background:var(--surface-2);border-radius:10px;padding:8px 10px}
+.rec .ask span{font-weight:700;display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.empty{color:var(--muted);font-size:13.5px;margin:0}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:13.5px}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.line{background:transparent;border:1px solid var(--line)}
+.btn.line:hover{background:var(--surface-2)}
+.toast{font-size:12.5px;color:var(--ok);font-weight:600;align-self:center}
+textarea.fallback{width:100%;min-height:140px;margin-top:10px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);padding:10px;font:12.5px/1.45 var(--font)}
+
+footer{padding-inline:16px;padding-block:0 32px;color:var(--muted);font-size:12.5px}
+footer .wrap{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body>
+
+
+<div class="recreation" role="note"><div class="wrap"><strong>Recreation</strong><span>This is a rebuild of a partner discovery tool Dean Graham originally created at iplicit. The original is no longer accessible, so it has been recreated for his portfolio. Not an official iplicit product.</span></div></div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Partner discovery tool</div>
+    <h1>Where is your client's finance team <em>least confident?</em></h1>
+    <p>Sit down with the finance lead and rate each process from 0 (not confident at all) to 10 (fully confident). Gaps surface instantly, ranked, with how iplicit closes each one and the question to ask next.</p>
+    <div class="steps"><span><b>1</b>Rate confidence</span><span><b>2</b>Review ranked gaps</span><span><b>3</b>Copy the summary into your follow-up</span></div>
+    <div class="client">
+      <div class="field grow"><label for="client">Client</label><input id="client" value="Northgate Learning Trust (example)" autocomplete="off"></div>
+      <div class="field mid"><label for="current">Current system</label>
+        <select id="current"><option>Sage 50</option><option>Sage 200</option><option>Xero</option><option>QuickBooks</option><option>Spreadsheets</option><option>Other / legacy on-premise</option></select></div>
+      <button class="ghost" id="sample" type="button">Load example</button>
+      <button class="ghost" id="reset" type="button">Start fresh</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap grid">
+    <section aria-label="Confidence ratings">
+      <div class="legend">
+        <span><i style="background:var(--crit)"></i>0–3 Critical gap</span>
+        <span><i style="background:var(--gap)"></i>4–6 Gap</span>
+        <span><i style="background:var(--ok)"></i>7–10 Confident</span>
+      </div>
+      <div id="cycles"></div>
+    </section>
+
+    <aside aria-label="Gap report">
+      <div class="panel summary">
+        <svg class="gauge" viewBox="0 0 120 120" role="img" aria-label="Overall confidence score">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="var(--track)" stroke-width="12"></circle>
+          <circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="314.16" stroke-dashoffset="314.16"></circle>
+          <text id="gnum" x="60" y="64" text-anchor="middle" font-size="30" font-weight="800" fill="var(--fg)">0</text>
+          <text x="60" y="84" text-anchor="middle" font-size="11" fill="var(--muted)">out of 100</text>
+        </svg>
+        <div>
+          <h2 id="verdict">Finance confidence</h2>
+          <p id="verdictSub"></p>
+          <div class="counts" id="counts"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Confidence by process</h3>
+        <div class="heat" id="heat"></div>
+      </div>
+
+      <div class="panel">
+        <h3 id="recTitle">How iplicit closes the gaps</h3>
+        <div class="recs" id="recs"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Share</h3>
+        <div class="actions">
+          <button class="btn primary" id="copy" type="button">Copy gap summary</button>
+          <span class="toast" id="toast" hidden>Copied to clipboard</span>
+        </div>
+        <textarea class="fallback" id="fallback" hidden readonly aria-label="Gap summary text"></textarea>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Recreated by Dean Graham from his original partner tool. Not an official iplicit product. <a href="index.html" style="color:inherit">Back to the portfolio</a></span>
+    <span>Capability notes summarise iplicit's publicly listed features; confirm specifics with the iplicit partner team.</span>
+  </div>
+</footer>
+
+<script>
+const CYCLES = [
+  {name:"Record to report", items:[
+    {id:"close", name:"Month-end close", q:"We close the month quickly, without late nights or manual journals.",
+     risk:"A slow close means leaders make decisions on numbers that are weeks old.",
+     fix:"<b>Real-time ledgers and automated journals.</b> Recurring and allocation journals post themselves, and bank, purchase and intercompany activity flows straight into the ledger, so close becomes a review rather than a rebuild.",
+     ask:"How many working days does close take today, and which step holds it up most?"},
+    {id:"consol", name:"Multi-entity & consolidation", q:"We can consolidate all entities without spreadsheets.",
+     risk:"Spreadsheet consolidation is slow, hard to audit and breaks every time the group changes.",
+     fix:"<b>Multi-entity by design.</b> Run every entity on one platform with automated inter-entity transactions and consolidated group reporting on demand.",
+     ask:"How many entities do you report on, and how long does group reporting take each month?"},
+    {id:"bank", name:"Bank reconciliation", q:"Bank accounts are reconciled daily with little manual matching.",
+     risk:"Late reconciliation hides errors and gives a false view of cash.",
+     fix:"<b>Integrated bank and payment management.</b> Direct bank connections bring transactions in automatically and matching rules handle the routine items, leaving the team to deal with exceptions only.",
+     ask:"How many bank accounts do you reconcile, and how often are they up to date?"}
+  ]},
+  {name:"Procure to pay", items:[
+    {id:"ap", name:"Purchase invoice processing", q:"Supplier invoices are captured and coded without manual keying.",
+     risk:"Manual keying costs hours each week and introduces coding errors.",
+     fix:"<b>Purchase invoice automation.</b> Invoices are captured, coded and matched to purchase orders automatically, then routed for approval.",
+     ask:"Roughly how many supplier invoices do you process a month, and who keys them?"},
+    {id:"approvals", name:"Approvals & spend control", q:"Spend is approved by the right person before it's committed.",
+     risk:"Without enforced approval, spend is committed before finance sees it.",
+     fix:"<b>Configurable approval workflows.</b> Purchase orders, invoices and expenses follow approval rules by value, department or entity, with budget-holders approving from anywhere.",
+     ask:"What happens today when someone orders without a purchase order?"},
+    {id:"expenses", name:"Expense claims", q:"Staff expenses are submitted, approved and posted without paper.",
+     risk:"Paper or email claims are slow to reimburse and hard to police.",
+     fix:"<b>Expense approval workflows.</b> Claims are submitted and approved digitally and post straight to the ledger with full analysis.",
+     ask:"How are expense claims submitted and checked today?"}
+  ]},
+  {name:"Order to cash", items:[
+    {id:"ar", name:"Sales invoicing & credit control", q:"We invoice promptly and chase overdue debt systematically.",
+     risk:"Slow invoicing and ad-hoc chasing push debtor days up and tie up cash.",
+     fix:"<b>Integrated sales ledger and iplicitPay.</b> Invoices go out from the same platform, and iplicitPay gives customers an easy way to pay, so cash comes in sooner and reconciles automatically.",
+     ask:"What are your debtor days now, and what would a 10-day improvement be worth?"},
+    {id:"stock", name:"Stock & inventory", q:"We have an accurate, live view of stock value.",
+     risk:"Stock held outside finance means valuations are estimates until a count.",
+     fix:"<b>Stock and inventory management.</b> Stock movements are tracked in the same system as the ledger, so valuation and cost of sales stay current.",
+     ask:"Where is stock tracked today, and how often does it agree with the ledger?"}
+  ]},
+  {name:"Plan & analyse", items:[
+    {id:"reporting", name:"Management reporting", q:"Budget-holders get accurate reports without finance building them.",
+     risk:"Finance becomes a report factory, rebuilding the same packs every month.",
+     fix:"<b>Real-time dashboards and unlimited analysis dimensions.</b> Report by department, site, project or fund from one set of data, and give budget-holders self-serve access through role-based permissions.",
+     ask:"How many hours a month go into building management packs?"},
+    {id:"budget", name:"Budgeting & forecasting", q:"We can compare actuals to budget and reforecast easily.",
+     risk:"Budgets that live in spreadsheets are out of date as soon as they're approved.",
+     fix:"<b>Advanced budgeting in the ledger.</b> Budgets and reforecasts sit alongside actuals at any level of analysis, with cost allocation across departments and projects.",
+     ask:"Where do budgets live today, and how many versions are in circulation?"},
+    {id:"insight", name:"Insight & analytics", q:"We can answer leadership's ad-hoc questions the same day.",
+     risk:"Ad-hoc questions turn into days of exports and pivot tables.",
+     fix:"<b>iplicit Insights.</b> Analytics built on live ledger data help finance spot trends and answer questions without exporting to spreadsheets.",
+     ask:"What's the last question the board asked that took too long to answer?"}
+  ]},
+  {name:"Control & compliance", items:[
+    {id:"audit", name:"Audit trail & controls", q:"Auditors can see who did what and when, without chasing us.",
+     risk:"Weak controls lengthen the audit and raise the risk of error or fraud.",
+     fix:"<b>Role-based permissions and full audit trail.</b> Every transaction carries its history and attached documents, and users only see and do what their role allows.",
+     ask:"What did your last audit management letter flag?"},
+    {id:"compliance", name:"Statutory & tax compliance", q:"VAT and statutory returns are produced without manual workarounds.",
+     risk:"Workarounds for VAT and statutory returns create compliance exposure.",
+     fix:"<b>Compliance and statutory reporting automation.</b> Returns are produced from ledger data, cutting manual preparation and the risk of errors.",
+     ask:"Which returns still need manual adjustment before submission?"},
+    {id:"integrations", name:"Integrations & data flow", q:"Our other systems feed finance automatically.",
+     risk:"Re-keying between systems duplicates effort and means no single version of the truth.",
+     fix:"<b>Open integrations.</b> Connect payroll, CRM, sector systems and other tools so data flows into the ledger automatically.",
+     ask:"Which systems do you re-key data from today?"}
+  ]}
+];
+const ALL = CYCLES.flatMap(c=>c.items.map(i=>({...i,cycle:c.name})));
+const SAMPLE = {close:3,consol:2,bank:6,ap:1,approvals:4,expenses:5,ar:7,stock:8,reporting:3,budget:2,insight:4,audit:7,compliance:8,integrations:3};
+let scores = {...SAMPLE};
+
+const band = v => v<=3?"crit":v<=6?"gap":"ok";
+const bandLabel = {crit:"Critical gap",gap:"Gap",ok:"Confident"};
+const bandColor = {crit:"var(--crit)",gap:"var(--gap)",ok:"var(--ok)"};
+
+function buildSliders(){
+  const root = document.getElementById("cycles");
+  root.innerHTML = CYCLES.map(c=>`
+    <div class="cycle">
+      <h2><span>${c.name}</span><span data-cyc="${c.name}"></span></h2>
+      ${c.items.map(i=>`
+      <div class="proc">
+        <div class="proc-top">
+          <div><h3><label for="r-${i.id}">${i.name}</label></h3><p>${i.q}</p></div>
+          <div class="score" id="v-${i.id}" aria-hidden="true"></div>
+        </div>
+        <input type="range" min="0" max="10" step="1" id="r-${i.id}" data-id="${i.id}" aria-describedby="v-${i.id}">
+        <div class="ticks" aria-hidden="true"><span>0 · Not confident</span><span>5</span><span>10 · Fully confident</span></div>
+      </div>`).join("")}
+    </div>`).join("");
+  root.addEventListener("input", e=>{
+    const id = e.target.dataset.id; if(!id) return;
+    scores[id] = +e.target.value; render();
+  });
+}
+
+function render(){
+  ALL.forEach(i=>{
+    const v = scores[i.id], b = band(v);
+    const r = document.getElementById("r-"+i.id);
+    r.value = v; r.style.setProperty("--pct", (v*10)+"%"); r.style.setProperty("--fill", bandColor[b]);
+    r.setAttribute("aria-valuetext", `${v} out of 10, ${bandLabel[b]}`);
+    const s = document.getElementById("v-"+i.id); s.textContent = v; s.className = "score s-"+b;
+  });
+  CYCLES.forEach(c=>{
+    const avg = c.items.reduce((a,i)=>a+scores[i.id],0)/c.items.length;
+    document.querySelector(`[data-cyc="${c.name}"]`).textContent = `avg ${avg.toFixed(1)}`;
+  });
+
+  const total = Math.round(ALL.reduce((a,i)=>a+scores[i.id],0)/ALL.length*10);
+  document.getElementById("gnum").textContent = total;
+  document.getElementById("arc").setAttribute("stroke-dashoffset", (314.16*(1-total/100)).toFixed(1));
+  const crit = ALL.filter(i=>band(scores[i.id])==="crit"), gap = ALL.filter(i=>band(scores[i.id])==="gap"), ok = ALL.filter(i=>band(scores[i.id])==="ok");
+  const verdict = total<40?"Significant exposure":total<65?"Clear room to improve":total<85?"Solid, with pockets of risk":"Highly confident team";
+  document.getElementById("verdict").textContent = verdict;
+  const client = document.getElementById("client").value.trim()||"This client";
+  const sys = document.getElementById("current").value;
+  document.getElementById("verdictSub").textContent = crit.length
+    ? `${client} on ${sys}: weakest in ${crit.sort((a,b)=>scores[a.id]-scores[b.id]).slice(0,2).map(i=>i.name.toLowerCase()).join(" and ")}.`
+    : gap.length ? `${client} on ${sys}: no critical gaps, ${gap.length} area${gap.length>1?"s":""} to tighten.` : `${client} on ${sys}: confident across every process.`;
+  document.getElementById("counts").innerHTML =
+    `<span class="pill s-crit">${crit.length} critical</span><span class="pill s-gap">${gap.length} gaps</span><span class="pill s-ok">${ok.length} confident</span>`;
+
+  const sorted = [...ALL].sort((a,b)=>scores[a.id]-scores[b.id]);
+  document.getElementById("heat").innerHTML = sorted.map(i=>{
+    const v=scores[i.id], b=band(v);
+    return `<div class="heat-row"><span title="${i.name}">${i.name}</span><div class="bar"><i style="width:${v*10}%;background:${bandColor[b]}"></i></div><b style="color:${bandColor[b]}">${v}</b></div>`;
+  }).join("");
+
+  const gaps = sorted.filter(i=>scores[i.id]<=6);
+  document.getElementById("recTitle").textContent = gaps.length ? `How iplicit closes the gaps · ${gaps.length}` : "How iplicit closes the gaps";
+  document.getElementById("recs").innerHTML = gaps.length ? gaps.map(i=>{
+    const b=band(scores[i.id]);
+    return `<article class="rec" style="--sev:${bandColor[b]}">
+      <div class="rec-head"><h4>${i.name}</h4><span class="tag">${bandLabel[b]} · ${scores[i.id]}/10</span></div>
+      <p class="risk">${i.risk}</p>
+      <p class="fix">${i.fix}</p>
+      <p class="ask"><span>Ask next</span>${i.ask}</p>
+    </article>`;}).join("")
+    : `<p class="empty">No processes scored 6 or below. Use the conversation to explore growth plans and where the current system will limit them.</p>`;
+}
+
+function summaryText(){
+  const client = document.getElementById("client").value.trim()||"Client";
+  const sys = document.getElementById("current").value;
+  const total = document.getElementById("gnum").textContent;
+  const sorted = [...ALL].sort((a,b)=>scores[a.id]-scores[b.id]);
+  const gaps = sorted.filter(i=>scores[i.id]<=6);
+  const strip = s=>s.replace(/<[^>]+>/g,"");
+  let t = `Finance confidence review: ${client}\nCurrent system: ${sys}\nOverall confidence: ${total}/100\n\n`;
+  if(gaps.length){
+    t += "Priority gaps and how iplicit addresses them:\n";
+    gaps.forEach((i,n)=>{ t += `\n${n+1}. ${i.name} (${scores[i.id]}/10, ${bandLabel[band(scores[i.id])]})\n   Impact: ${i.risk}\n   iplicit: ${strip(i.fix)}\n   Next question: ${i.ask}\n`; });
+  } else t += "No gaps scored 6 or below.\n";
+  const ok = sorted.filter(i=>scores[i.id]>=7).map(i=>i.name);
+  if(ok.length) t += `\nAreas of confidence: ${ok.join(", ")}.\n`;
+  return t;
+}
+
+document.getElementById("copy").addEventListener("click", async ()=>{
+  const text = summaryText(), fb = document.getElementById("fallback"), toast = document.getElementById("toast");
+  try{ await navigator.clipboard.writeText(text); fb.hidden = true; toast.textContent="Copied to clipboard"; }
+  catch(e){ fb.value = text; fb.hidden = false; fb.focus(); fb.select(); toast.textContent="Select all and copy the text below"; }
+  toast.hidden = false; clearTimeout(window._t); window._t = setTimeout(()=>toast.hidden=true, 2600);
+});
+document.getElementById("sample").addEventListener("click", ()=>{ scores={...SAMPLE}; document.getElementById("client").value="Northgate Learning Trust (example)"; document.getElementById("current").value="Sage 50"; render(); });
+document.getElementById("reset").addEventListener("click", ()=>{ ALL.forEach(i=>scores[i.id]=5); document.getElementById("client").value=""; render(); document.getElementById("client").focus(); });
+document.getElementById("client").addEventListener("input", render);
+document.getElementById("current").addEventListener("change", render);
+
+buildSliders(); render();
+</script>
+</body></html>
