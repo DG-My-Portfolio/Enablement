@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dean Graham · Sales Enablement Portfolio</title>
+<meta name="description" content="Sales enablement portfolio of Dean Graham: onboarding, partner enablement, coaching, deal strategy and needs analysis from a UK mid-market finance software company.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap">
+<style>
+
+:root{--blue:#1F5AA8;--blue-d:#174580;--tint:#EEF3FA;--tint-2:#DCE7F5;--ink:#1F2A36;--muted:#6B737B;--line:#DCDEDF}
+*{box-sizing:border-box}
+
+
+
+
+.kicker{font-size:12.30px;letter-spacing:.14em;color:#4A5563;margin:0 0 6.00px;text-transform:uppercase}
+h2{color:var(--blue);font-size:23.25px;margin:0 0 4.50px;font-weight:700}
+.tag{font-style:italic;color:var(--muted);font-size:14.40px;margin:0 0 13.50px}
+.head{border-bottom:1.12px solid #4A5563;padding-bottom:0;margin-bottom:18.00px}
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:22.50px;margin-bottom:24.00px}
+.blocks>div{border-top:3.00px solid var(--blue);padding-top:10.50px}
+.blocks h3{margin:0 0 4.50px;color:var(--blue);font-size:14.40px;letter-spacing:.06em;text-transform:uppercase}
+.blocks p{margin:0;font-size:14.70px;line-height:1.5}
+
+.exhead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.12px solid var(--line);padding-bottom:6.00px;margin-bottom:13.50px}
+.exhead b{font-size:12.30px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.exhead span{font-size:12.00px;color:var(--muted);font-style:italic}
+
+/* onboarding */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:15.00px;border-radius:6.00px;overflow:hidden}
+.phases div{padding:7.50px 13.50px;color:#fff;background:var(--blue);font-size:12.90px;display:flex;justify-content:space-between;align-items:baseline}
+.phases div:nth-child(2){background:var(--blue-d)}
+.phases div.off{background:var(--tint-2);color:var(--muted)}
+.phases b{font-size:14.40px;letter-spacing:.04em}
+.intro{background:var(--tint);border-radius:6.00px;padding:10.50px 15.00px;margin-bottom:13.50px;font-size:13.50px}
+.intro b{color:var(--blue);letter-spacing:.06em;font-size:12.60px;text-transform:uppercase;display:block;margin-bottom:1.50px}
+.months{display:grid;grid-template-columns:1fr 1fr;gap:21.00px}
+.month{border:1.12px solid var(--tint-2);border-radius:7.50px;overflow:hidden}
+.month .mh{background:var(--blue);color:#fff;padding:9.00px 15.00px}
+.month:nth-child(2) .mh{background:var(--blue-d)}
+.mh .n{font-size:11.70px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.mh .t{font-size:18.75px;font-weight:700;line-height:1.15}
+.mh .f{font-size:12.90px;margin-top:3.00px;opacity:.95}
+.mb{padding:12.00px 15.00px 13.50px}
+.mb p.d{margin:0 0 10.50px;font-size:12.75px;color:#3A4552;line-height:1.42}
+.mb h4{margin:7.50px 0 2.25px;font-size:12.00px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.mb ul{margin:0;padding:0;list-style:none}
+.mb li{font-size:12.90px;padding:1.35px 0 1.35px 16.50px;position:relative;line-height:1.32}
+.mb li::before{content:"";position:absolute;left:1.50px;top:7.35px;width:6.00px;height:6.00px;border-radius:50%;background:var(--blue)}
+.mb ul.out li::before{border-radius:1.50px;width:7.50px;height:7.50px;top:6.15px;background:none;border:1.80px solid var(--blue)}
+
+/* question bank */
+.qcols{display:grid;grid-template-columns:1fr 1fr;gap:24.00px}
+.qsec h4{margin:0;font-size:17.25px;color:var(--ink)}
+.qsec .lede{margin:1.50px 0 10.50px;font-size:12.90px;color:var(--muted)}
+.q{display:grid;grid-template-columns:28.50px 1fr;gap:0 9.00px;padding:9.00px 0;border-top:1.12px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q .num{grid-row:span 2;width:25.50px;height:25.50px;border-radius:50%;background:var(--tint);color:var(--blue);font-weight:700;font-size:12.60px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.q .qq{font-weight:700;font-size:14.10px;line-height:1.3}
+.q .why{font-size:12.90px;color:#3A4552;line-height:1.4;margin-top:2.25px}
+.q .why::before{content:"Why ask: ";color:var(--blue);font-weight:700;font-size:11.70px;letter-spacing:.06em;text-transform:uppercase}
+.gapnote{margin-top:9.00px;font-size:12.00px;color:var(--muted);font-style:italic}
+
+/* partner */
+.pcols{display:grid;grid-template-columns:1.02fr 1fr;gap:24.00px}
+.oneliner{background:var(--blue);color:#fff;border-radius:7.50px;padding:13.50px 18.00px;margin-bottom:13.50px}
+.oneliner .n{font-size:10.80px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.oneliner p{margin:4.50px 0 0;font-size:16.50px;line-height:1.3;font-style:italic}
+.sub{margin:0 0 6.00px;font-size:12.60px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.sub span{color:var(--muted);letter-spacing:0;text-transform:none;font-weight:400;font-style:italic;font-size:12.60px}
+.sublede{margin:-3.00px 0 7.50px;font-size:12.75px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6.00px;margin-bottom:15.00px}
+.chips span{background:var(--tint);border:1.12px solid var(--tint-2);border-radius:30.00px;padding:3.75px 12.00px;font-size:12.75px}
+.answer{border:1.12px solid var(--tint-2);border-radius:7.50px;padding:10.50px 15.00px;margin-bottom:10.50px}
+.answer p{margin:0;font-size:13.35px;line-height:1.42}
+.answer p.it{font-style:italic}
+.kit .lede{margin:0 0 10.50px;font-size:12.45px;color:#3A4552;line-height:1.42}
+.tgroups{display:grid;gap:9.00px}
+.tg{border:1.12px solid var(--tint-2);border-radius:7.50px;overflow:hidden}
+.tg h5{margin:0;background:var(--tint);color:var(--blue);font-size:12.30px;letter-spacing:.1em;text-transform:uppercase;padding:5.25px 13.50px;display:flex;justify-content:space-between}
+.tg h5 span{color:var(--muted);letter-spacing:0;font-weight:400}
+.tg ul{margin:0;padding:6.00px 13.50px 7.50px;list-style:none;display:grid;gap:1.50px}
+.tg li{font-size:13.05px;padding-left:19.50px;position:relative;line-height:1.32}
+.tg li::before{content:"";position:absolute;left:0;top:3.30px;width:10.50px;height:10.50px;border:1.65px solid var(--blue);border-radius:2.25px}
+.rule{display:grid;grid-template-columns:1fr 1fr;gap:9.00px;margin-top:12.00px}
+.rule div{border-radius:7.50px;padding:9.00px 13.50px;font-size:13.20px;line-height:1.3}
+.rule div:first-child{background:var(--tint);}
+.rule div:last-child{background:var(--blue);color:#fff}
+.rule b{font-size:22.50px;display:block;line-height:1}
+
+
+
+
+:root{--blue:#1F5AA8;--blue-d:#174580;--tint:#EEF3FA;--tint-2:#DCE7F5;--ink:#1F2A36;--muted:#6B737B;--line:#DCDEDF}
+*{box-sizing:border-box}
+
+
+
+
+.kicker{font-size:12.30px;letter-spacing:.14em;color:#4A5563;margin:0 0 6.00px;text-transform:uppercase}
+h2{color:var(--blue);font-size:23.25px;margin:0 0 4.50px;font-weight:700}
+.tag{font-style:italic;color:var(--muted);font-size:14.40px;margin:0 0 13.50px}
+.head{border-bottom:1.12px solid #4A5563;padding-bottom:0;margin-bottom:18.00px}
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:22.50px;margin-bottom:24.00px}
+.blocks>div{border-top:3.00px solid var(--blue);padding-top:10.50px}
+.blocks h3{margin:0 0 4.50px;color:var(--blue);font-size:14.40px;letter-spacing:.06em;text-transform:uppercase}
+.blocks p{margin:0;font-size:14.70px;line-height:1.5}
+
+.exhead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.12px solid var(--line);padding-bottom:6.00px;margin-bottom:13.50px}
+.exhead b{font-size:12.30px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.exhead span{font-size:12.00px;color:var(--muted);font-style:italic}
+
+/* onboarding */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:15.00px;border-radius:6.00px;overflow:hidden}
+.phases div{padding:7.50px 13.50px;color:#fff;background:var(--blue);font-size:12.90px;display:flex;justify-content:space-between;align-items:baseline}
+.phases div:nth-child(2){background:var(--blue-d)}
+.phases div.off{background:var(--tint-2);color:var(--muted)}
+.phases b{font-size:14.40px;letter-spacing:.04em}
+.intro{background:var(--tint);border-radius:6.00px;padding:10.50px 15.00px;margin-bottom:13.50px;font-size:13.50px}
+.intro b{color:var(--blue);letter-spacing:.06em;font-size:12.60px;text-transform:uppercase;display:block;margin-bottom:1.50px}
+.months{display:grid;grid-template-columns:1fr 1fr;gap:21.00px}
+.month{border:1.12px solid var(--tint-2);border-radius:7.50px;overflow:hidden}
+.month .mh{background:var(--blue);color:#fff;padding:9.00px 15.00px}
+.month:nth-child(2) .mh{background:var(--blue-d)}
+.mh .n{font-size:11.70px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.mh .t{font-size:18.75px;font-weight:700;line-height:1.15}
+.mh .f{font-size:12.90px;margin-top:3.00px;opacity:.95}
+.mb{padding:12.00px 15.00px 13.50px}
+.mb p.d{margin:0 0 10.50px;font-size:12.75px;color:#3A4552;line-height:1.42}
+.mb h4{margin:7.50px 0 2.25px;font-size:12.00px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.mb ul{margin:0;padding:0;list-style:none}
+.mb li{font-size:12.90px;padding:1.35px 0 1.35px 16.50px;position:relative;line-height:1.32}
+.mb li::before{content:"";position:absolute;left:1.50px;top:7.35px;width:6.00px;height:6.00px;border-radius:50%;background:var(--blue)}
+.mb ul.out li::before{border-radius:1.50px;width:7.50px;height:7.50px;top:6.15px;background:none;border:1.80px solid var(--blue)}
+
+/* question bank */
+.qcols{display:grid;grid-template-columns:1fr 1fr;gap:24.00px}
+.qsec h4{margin:0;font-size:17.25px;color:var(--ink)}
+.qsec .lede{margin:1.50px 0 10.50px;font-size:12.90px;color:var(--muted)}
+.q{display:grid;grid-template-columns:28.50px 1fr;gap:0 9.00px;padding:9.00px 0;border-top:1.12px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q .num{grid-row:span 2;width:25.50px;height:25.50px;border-radius:50%;background:var(--tint);color:var(--blue);font-weight:700;font-size:12.60px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.q .qq{font-weight:700;font-size:14.10px;line-height:1.3}
+.q .why{font-size:12.90px;color:#3A4552;line-height:1.4;margin-top:2.25px}
+.q .why::before{content:"Why ask: ";color:var(--blue);font-weight:700;font-size:11.70px;letter-spacing:.06em;text-transform:uppercase}
+.gapnote{margin-top:9.00px;font-size:12.00px;color:var(--muted);font-style:italic}
+
+/* partner */
+.pcols{display:grid;grid-template-columns:1.02fr 1fr;gap:24.00px}
+.oneliner{background:var(--blue);color:#fff;border-radius:7.50px;padding:13.50px 18.00px;margin-bottom:13.50px}
+.oneliner .n{font-size:10.80px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.oneliner p{margin:4.50px 0 0;font-size:16.50px;line-height:1.3;font-style:italic}
+.sub{margin:0 0 6.00px;font-size:12.60px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.sub span{color:var(--muted);letter-spacing:0;text-transform:none;font-weight:400;font-style:italic;font-size:12.60px}
+.sublede{margin:-3.00px 0 7.50px;font-size:12.75px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6.00px;margin-bottom:15.00px}
+.chips span{background:var(--tint);border:1.12px solid var(--tint-2);border-radius:30.00px;padding:3.75px 12.00px;font-size:12.75px}
+.answer{border:1.12px solid var(--tint-2);border-radius:7.50px;padding:10.50px 15.00px;margin-bottom:10.50px}
+.answer p{margin:0;font-size:13.35px;line-height:1.42}
+.answer p.it{font-style:italic}
+.kit .lede{margin:0 0 10.50px;font-size:12.45px;color:#3A4552;line-height:1.42}
+.tgroups{display:grid;gap:9.00px}
+.tg{border:1.12px solid var(--tint-2);border-radius:7.50px;overflow:hidden}
+.tg h5{margin:0;background:var(--tint);color:var(--blue);font-size:12.30px;letter-spacing:.1em;text-transform:uppercase;padding:5.25px 13.50px;display:flex;justify-content:space-between}
+.tg h5 span{color:var(--muted);letter-spacing:0;font-weight:400}
+.tg ul{margin:0;padding:6.00px 13.50px 7.50px;list-style:none;display:grid;gap:1.50px}
+.tg li{font-size:13.05px;padding-left:19.50px;position:relative;line-height:1.32}
+.tg li::before{content:"";position:absolute;left:0;top:3.30px;width:10.50px;height:10.50px;border:1.65px solid var(--blue);border-radius:2.25px}
+.rule{display:grid;grid-template-columns:1fr 1fr;gap:9.00px;margin-top:12.00px}
+.rule div{border-radius:7.50px;padding:9.00px 13.50px;font-size:13.20px;line-height:1.3}
+.rule div:first-child{background:var(--tint);}
+.rule div:last-child{background:var(--blue);color:#fff}
+.rule b{font-size:22.50px;display:block;line-height:1}
+
+
+
+
+.route{display:grid;grid-template-columns:438.00px 1fr;gap:21.00px;align-items:center;margin-bottom:13.50px}
+.route svg{width:100%;display:block}
+.rh{display:flex;align-items:baseline;gap:12.00px;margin:0 0 7.50px}
+.rh .shape{font-size:33.00px;font-weight:700;color:var(--blue);line-height:1}
+.rh h4{margin:0;font-size:17.25px}
+.rh span{font-size:12.90px;color:var(--muted)}
+.when{margin:0 0 9.00px;font-size:13.20px;line-height:1.4;color:#3A4552}
+.when b{color:var(--blue)}
+ol.st{list-style:none;margin:0;padding:0;display:grid;gap:5.10px}
+ol.st li{display:grid;grid-template-columns:21.00px 1fr;gap:9.00px}
+ol.st li>b{width:19.50px;height:19.50px;border-radius:50%;background:var(--blue);color:#fff;font-size:11.10px;display:grid;place-items:center;margin-top:1.50px}
+ol.st strong{display:block;font-size:13.35px;line-height:1.25}
+ol.st span{display:block;font-size:12.75px;line-height:1.35;color:#3A4552}
+.rulebox{background:var(--blue);color:#fff;border-radius:7.50px;padding:12.00px 18.00px;font-size:14.10px;line-height:1.4}
+.rulebox b{letter-spacing:.1em;font-size:11.70px;text-transform:uppercase;display:block;opacity:.85;margin-bottom:1.50px}
+
+.shot{border:1.12px solid var(--tint-2);border-radius:7.50px;overflow:hidden;line-height:0}
+.shot img{width:100%;display:block}
+.cap{font-size:12.90px;color:var(--muted);margin:6.00px 0 0;line-height:1.3}
+.lower{display:grid;grid-template-columns:300.00px 1fr;gap:24.00px;margin-top:18.00px;align-items:start}
+.try{background:var(--tint);border-radius:7.50px;padding:16.50px 19.50px}
+.try h4{margin:0 0 6.00px;color:var(--blue);font-size:12.60px;letter-spacing:.1em;text-transform:uppercase}
+.try p{margin:0 0 10.50px;font-size:14.10px;line-height:1.45}
+.try a{color:var(--blue);font-weight:700;text-decoration:none;font-size:15.60px;word-break:break-all}
+.how{margin:15.00px 0 0;padding:0;list-style:none;display:grid;gap:7.50px}
+.how li{display:grid;grid-template-columns:24.00px 1fr;gap:9.00px;font-size:13.80px;line-height:1.38}
+.how b{width:22.50px;height:22.50px;border-radius:50%;background:var(--blue);color:#fff;font-size:12.00px;display:grid;place-items:center}
+
+
+:root{--blue:#1F5AA8;--blue-d:#174580;--tint:#EEF3FA;--tint-2:#DCE7F5;--ink:#1F2A36;--muted:#6B737B;--line:#DCDEDF;--bg:#FFFFFF;--bg-2:#F6F8FB;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Lato","Carlito","Calibri",system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:24px}
+.top{padding-block:72px 40px;border-bottom:1px solid var(--line)}
+.top h1{margin:0;color:var(--blue);font-size:clamp(38px,6vw,56px);line-height:1.05;font-weight:900;letter-spacing:-.01em}
+.top .role{margin:8px 0 0;font-size:20px;color:#4A5563}
+.contact{display:flex;flex-wrap:wrap;gap:8px 20px;margin:20px 0 0;font-size:15px;color:#4A5563}
+.contact a{text-decoration:none;font-weight:700}
+.lede-top{max-width:64ch;margin:28px 0 0;font-size:17px}
+.lede-top p{margin:0 0 10px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:11px 20px;font-size:15px}
+.btn:hover{background:var(--blue-d)}
+.btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.ghost:hover{background:var(--tint)}
+ol.toc{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid #C9D3E0}
+ol.toc a{display:grid;grid-template-columns:36px 1fr;gap:8px;padding:14px 4px;border-bottom:1px solid #C9D3E0;text-decoration:none;color:inherit}
+ol.toc a:hover{background:var(--bg-2)}
+ol.toc b{color:var(--blue);font-size:16px}
+ol.toc strong{display:block;color:var(--blue);font-size:16.5px}
+ol.toc em{display:block;font-style:normal;color:#4A5563;font-size:14px}
+.piece{padding-block:64px 24px;border-bottom:1px solid var(--line)}
+.shead{border-bottom:1px solid #4A5563;margin-bottom:22px;scroll-margin-top:16px}
+.note{margin:18px 0 0;font-size:13px;color:var(--muted);font-style:italic}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+figure{margin:0;min-width:0}
+figure img{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--tint-2)}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:6px}
+figure.wide{margin-bottom:22px}
+figure.wide img{border:0}
+.tablewrap{overflow-x:auto}
+.mtable{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+.mtable th{background:var(--blue);color:#fff;text-align:left;padding:10px 12px;font-weight:700}
+.mtable td{padding:11px 12px;border-bottom:1px solid #C9D3E0;vertical-align:top}
+.mtable tr:nth-child(odd) td{background:var(--bg-2)}
+.mtable td:first-child{font-weight:700;color:var(--blue);white-space:nowrap}
+.case h4{color:var(--blue);margin:0 0 6px;font-size:17px}
+.case p{margin:0 0 18px;max-width:75ch}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:18px}
+.split h5{margin:0 0 6px;color:var(--blue);font-size:16px}
+.split ul{margin:0;padding-left:20px}
+.split li{margin:3px 0}
+.whyinc{background:var(--tint);border-left:3px solid var(--blue);padding:12px 16px;border-radius:0 6px 6px 0;font-size:14.5px}
+.gflower{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:24px;margin-top:22px;align-items:start}
+.gf .try a.btn{margin:4px 0 8px;font-size:15px;word-break:normal;color:#fff}
+.foot-site{padding-block:32px 48px;color:var(--muted);font-size:13.5px}
+.route .shot svg{max-width:100%}
+@media (max-width:760px){
+  .wrap{padding-inline:16px}
+  .top{padding-block:44px 28px}
+  .blocks,.months,.qcols,.pcols,.figs,.split,.gflower,.route{grid-template-columns:1fr!important}
+  .phases div span{display:none}
+  .piece{padding-block:44px 16px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+<h1>Dean Graham</h1><p class="role">Sales enablement portfolio</p>
+<p class="contact"><span>Newcastle upon Tyne</span><a href="mailto:mrdeangraham@gmail.com">mrdeangraham@gmail.com</a><a href="https://www.linkedin.com/in/mrdeangraham">linkedin.com/in/mrdeangraham</a></p>
+<div class="lede-top"><p>Eight pieces of work from my time at iplicit, a UK mid-market finance software company, between 2024 and 2026. Each one starts with the situation, what I built and what it led to, followed by extracts from the material itself.</p>
+<p>Client names, internal targets and colleagues’ names have been removed. I’m happy to talk through any of these in more detail.</p></div>
+<div class="actions"><a class="btn" href="Dean_Graham_Enablement_Portfolio.pdf">Download the PDF</a><a class="btn ghost" href="gap-finder/">Try the Gap Finder</a></div>
+<ol class="toc"><li><a href="#onboarding"><b>1</b><span><strong>SDR onboarding programme</strong><em>Twelve weeks in three phases, from new starter to fully ramped</em></span></a></li><li><a href="#question-bank"><b>2</b><span><strong>Qualification question bank</strong><em>What to ask a prospect, and why each answer matters</em></span></a></li><li><a href="#partner-kit"><b>3</b><span><strong>Partner cheat sheet and confidence kit</strong><em>Positioning and referral messaging for accountancy and reseller partners</em></span></a></li><li><a href="#pitch-deck"><b>4</b><span><strong>Pitch deck, buyer personas and AI deck builder</strong><em>A problem-first deck, tailored by industry and buyer</em></span></a></li><li><a href="#soundcheck"><b>5</b><span><strong>SDR Soundcheck &amp; Spotlight</strong><em>A coaching rhythm built on real calls, with a way to measure it</em></span></a></li><li><a href="#performance-gap"><b>6</b><span><strong>Diagnosing an SDR performance gap</strong><em>Case study: data, interviews and call analysis turned into a programme</em></span></a></li><li><a href="#gap-finder"><b>7</b><span><strong>Finance Gap Finder</strong><em>An interactive partner tool that turns client confidence scores into ranked gaps</em></span></a></li><li><a href="#org-chart"><b>8</b><span><strong>Navigating the org chart: the W and the M</strong><em>Two routes through a buying committee, and when to use each</em></span></a></li></ol>
+</div></header>
+<main class="wrap"><section class="piece"><header class="shead" id="onboarding"><p class="kicker">01 · Onboarding</p><h2>SDR onboarding programme</h2><p class="tag">The iplicit SDR Onboarding Handbook, November 2025</p></header><div class="blocks"><div><h3>Situation</h3><p>New SDRs were taking around four weeks to book their first meeting. With the team growing quickly, every new starter needed the same clear route to being fully ramped.</p></div><div><h3>What I built</h3><p>A twelve-week programme in three phases: Learn, Prove and Produce. Each month sets out what the new starter will master, what they will do and what “good” looks like by the end of it. Outbound calling starts in week two rather than after training finishes.</p></div><div><h3>What changed</h3><p>Time to first meeting fell from four weeks to two, then to four days over about ten more starters. After each one I asked the new hire and their manager what had helped and changed the pacing. Meetings per SDR rose from 6 to 8 a month while the team more than doubled.</p></div></div>
+
+  <div class="exhead"><b>From the handbook</b><span>Months 1 and 2 shown</span></div>
+  <div class="phases">
+    <div><b>Month 1 · Learn</b><span>Foundations</span></div>
+    <div><b>Month 2 · Prove</b><span>Results</span></div>
+    <div class="off"><b>Month 3 · Produce</b><span>Not shown</span></div>
+  </div>
+
+  <div class="months">
+    <div class="month">
+      <div class="mh"><div class="n">Month 1</div><div class="t">Learn</div><div class="f"><b>Focus:</b> Foundations, confidence, and controlled outbound.</div></div>
+      <div class="mb">
+        <p class="d">This month is about building your foundations and getting comfortable operating in a real sales environment. You’ll learn iplicit’s story, product fundamentals, our ICPs, and the problems our prospects face. You’ll start outbound early, practice call frameworks, and begin speaking to real prospects. By the end of Month 1, you should be able to confidently explain why organisations choose iplicit, run basic outbound activity without hesitation, and book your first meeting through consistent, well-researched outreach.</p>
+        <h4>What you’ll master</h4>
+        <ul><li>iplicit story and product fundamentals</li><li>ICPs and personas</li><li>Value proposition: why prospects choose iplicit</li><li>Research fundamentals and call/email basics</li><li>Intro to tools: HubSpot, Apollo, Attention.io</li></ul>
+        <h4>What you’ll do</h4>
+        <ul><li>Shadow SDRs, AEs, and real customer calls</li><li>Learn calling frameworks</li><li>Start early outbound (week 2 onwards)</li><li>Practice objection handling and call structure</li><li>Build your first personal prospect list</li></ul>
+        <h4>End-of-month outcomes</h4>
+        <ul class="out"><li>Can explain iplicit clearly and confidently</li><li>Sends well-researched, relevant outreach</li><li>Handles basic objections with composure</li><li>Books your <b>first meeting</b></li><li>Demonstrates ownership, resilience, and pace</li></ul>
+      </div>
+    </div>
+    <div class="month">
+      <div class="mh"><div class="n">Month 2</div><div class="t">Prove</div><div class="f"><b>Focus:</b> Apply skills, deliver results, and improve quality.</div></div>
+      <div class="mb">
+        <p class="d">Now you turn knowledge into results. This month is about improving call quality, sharpening your messaging, and demonstrating that you can generate pipeline consistently. You’ll deliver cleaner handoffs, work closely with AEs, and use tools like Attention.io to improve your conversations. You’re expected to show discipline in your daily routines, understand vertical-specific pain points, and hit a steady meeting target. By the end of Month 2, you should be operating with confidence, accuracy, and visible momentum.</p>
+        <h4>What you’ll master</h4>
+        <ul><li>Advanced outbound execution</li><li>Persona-specific messaging (CFO, FD, Head of Finance)</li><li>iplicit’s competitive positioning (Sage50/200, Intacct, Xero, Exchequer)</li><li>Vertical relevance</li><li>Strong objection handling and call control</li></ul>
+        <h4>What you’ll do</h4>
+        <ul><li>Run structured daily prospecting blocks</li><li>Keep HubSpot pipeline clean and accurate</li><li>Collaborate with AEs for strong handoffs</li><li>Review and improve calls using Attention.io</li></ul>
+        <h4>End-of-month outcomes</h4>
+        <ul class="out"><li>Books <b>consistent meetings (4+ for the month)</b></li><li>Demonstrates steady call quality and talk track control</li><li>Produces clean, high-quality handoffs</li><li>Applies vertical insights in messaging</li></ul>
+      </div>
+    </div>
+  </div>
+  <p class="note">Extract reformatted for this portfolio. Wording is unchanged from the original handbook.</p></section><section class="piece"><header class="shead" id="question-bank"><p class="kicker">02 · Product knowledge and messaging</p><h2>Qualification question bank</h2><p class="tag">SDR Technical Qualification Questions and Explanations</p></header><div class="blocks"><div><h3>Situation</h3><p>SDRs were expected to qualify a prospect’s technical fit as well as budget, authority, need and timing before passing a meeting to an AE.</p></div><div><h3>What I built</h3><p>Twenty-four questions grouped by company structure, current system, stock, functional needs and buying process. Every question comes with a short explanation of why it’s worth asking and what the answer tells you. For example, the number of legal entities points straight to consolidation pain.</p></div><div><h3>Why it matters</h3><p>It turns product strengths into questions a prospect can answer in their own words. SDRs could hold a credible conversation with a finance director without deep product knowledge, and the AE they were paired with started from a clearer picture of the prospect’s pain.</p></div></div>
+
+  <div class="exhead"><b>From the question bank</b><span>Two of five sections shown</span></div>
+  <div class="qcols">
+    <div class="qsec">
+      <h4>Company structure &amp; size</h4>
+      <p class="lede">These questions help gauge the complexity of the business and whether iplicit is a good fit.</p>
+      <div class="q"><div class="num">1</div><div class="qq">How many legal entities are there in total?</div><div class="why">iplicit’s multi-entity consolidation is a <b>key strength</b>. Understanding the number of entities helps determine if the prospect struggles with manual consolidation, intercompany transactions, and reporting across multiple entities.</div></div>
+      <div class="q"><div class="num">2</div><div class="qq">Are all the entities UK based?</div><div class="why">If entities are international, iplicit’s multi-currency and multi-jurisdiction capabilities (e.g., handling VAT/GST differences) may be relevant.</div></div>
+      <div class="q"><div class="num">3</div><div class="qq">Where are the entities located?</div><div class="why">Helps identify whether cross-border operations require compliance with different tax regimes, foreign exchange handling, or localisation needs.</div></div>
+      <div class="q"><div class="num">4</div><div class="qq">How many employees are there within the organization?</div><div class="why">Determines the scale of the company and whether they need a system that can support multiple users, approval workflows, and automation at scale.</div></div>
+      <div class="q"><div class="num">5</div><div class="qq">How many make up the core finance team?</div><div class="why">A small finance team often means they need automation and efficiency, whereas a larger team may require complex user permissions and workflow approvals.</div></div>
+      <div class="q"><div class="num">6</div><div class="qq">What’s the revenue for the organisation?</div><div class="why">Revenue size can indicate complexity in reporting needs, financial controls, and whether they are scaling beyond their current system’s capabilities.</div></div>
+    </div>
+    <div class="qsec">
+      <h4>Decision-making &amp; buying process</h4>
+      <p class="lede">These questions help assess the prospect’s authority, timeline, and budget.</p>
+      <div class="q"><div class="num">18</div><div class="qq">What is your role within the business?</div><div class="why">Helps identify whether the contact is a decision-maker or an influencer within the buying process.</div></div>
+      <div class="q"><div class="num">19</div><div class="qq">Would you be managing the project yourself?</div><div class="why">Determines if they are responsible for implementation or if there is an IT/finance team involved.</div></div>
+      <div class="q"><div class="num">20</div><div class="qq">Who would have final sign-off?</div><div class="why">Identifies the economic buyer (MEDDIC methodology) and whether they need to be engaged later in the process.</div></div>
+      <div class="q"><div class="num">21</div><div class="qq">Is there a timeframe you’re working on?</div><div class="why">Helps prioritise leads based on urgency—whether they need a system now or are just exploring options.</div></div>
+      <div class="q"><div class="num">22</div><div class="qq">When is your year-end?</div><div class="why">Year-end is often when companies look to transition systems to align with financial reporting cycles, making it a key factor in deal timing.</div></div>
+      <div class="q"><div class="num">23</div><div class="qq">Are there any other system providers you’re looking at?</div><div class="why">Knowing competitors in the mix helps frame iplicit’s differentiation early in the conversation.</div></div>
+      <div class="q"><div class="num">24</div><div class="qq">Is there a formal budget you’re working with?</div><div class="why">Determines affordability and whether pricing could be a barrier, allowing SDRs to navigate objections early.</div></div>
+    </div>
+  </div>
+  <p class="gapnote">Questions 7–17 cover current system, stock and functional needs.</p>
+  <p class="note">Extract reformatted for this portfolio. Wording is unchanged from the original document.</p></section><section class="piece"><header class="shead" id="partner-kit"><p class="kicker">03 · Battlecards and positioning</p><h2>Partner cheat sheet and confidence kit</h2><p class="tag">Partner-facing enablement, December 2025</p></header><div class="blocks"><div><h3>Situation</h3><p>Accountancy and reseller partners are often the first to notice when a client has outgrown their finance system. They aren’t product experts, though, and won’t read long material before a client conversation.</p></div><div><h3>What I built</h3><p>Two levels of the same message. A short cheat sheet covering who the product is for, the triggers to listen for, the one-liner, and what to say when asked about price, integration or implementation. A fuller confidence kit with proof points, referral wording and answers to common client worries.</p></div><div><h3>How it was used</h3><p>It was built so that every partner tells the same story, whatever their sector or experience. I also used the kit as the basis for a practical hiring exercise, asking learning-content candidates how they would turn it into training partners would use mid-conversation.</p></div></div>
+
+  <div class="pcols">
+    <div>
+      <div class="exhead"><b>Cheat sheet</b><span>Sections 6–9</span></div>
+      <div class="oneliner"><div class="n">The iplicit one-liner (most important line to memorise)</div><p>“iplicit gives you enterprise-grade capability without enterprise-grade cost, complexity, or timelines.”</p></div>
+      <p class="sub">Signs a client is a strong fit</p><p class="sublede">Partners should immediately lean in when clients mention:</p>
+      <div class="chips"><span>“Month-end takes too long.”</span><span>“We rely on spreadsheets for consolidation.”</span><span>“We’ve outgrown Sage 50 / Xero.”</span><span>“We need better approvals and controls.”</span><span>“Our systems don’t talk to each other.”</span><span>“ERP is too big or too expensive.”</span><span>“We’re adding new sites/entities.”</span><span>“Audits are painful.”</span><span>“Reporting isn’t real-time.”</span></div>
+      <p class="sub">If the client asks about integration</p>
+      <div class="answer"><p>“iplicit is API-first and integrates with the systems you rely on — CRM, EPOS, payroll, TMS, ticketing, stock, expense tools, banking and more. You keep what works; iplicit becomes the finance hub.”</p></div>
+      <p class="sub">If the client asks about implementation</p>
+      <div class="answer"><p class="it">“With one of the fastest implementation times in the market, most customers go live in weeks, not years. UK-based delivery, clear timelines, no ERP-style disruption.”</p></div>
+    </div>
+    <div class="kit">
+      <div class="exhead"><b>Confidence kit</b><span>Section 3</span></div>
+      <p class="sub" style="font-size:9.6pt;letter-spacing:.02em;text-transform:none;color:var(--ink)">Key triggers that say <i>“This client is ready for iplicit”</i></p>
+      <p class="lede">This section helps you quickly recognise when a client is likely to benefit from iplicit, without needing deep technical knowledge or a detailed discovery process. The triggers highlight the practical signs that an organisation has outgrown its current finance system — whether that’s operational strain, manual work, growth pressures, or reporting limitations. Use this list as a simple checklist during your conversations or reviews. If a client shows several of these indicators, it’s a strong signal that introducing iplicit will add genuine value to them and strengthen your advisory relationship.</p>
+      <div class="tgroups">
+        <div class="tg"><h5>Operational triggers <span>8</span></h5><ul><li>Multi-entity growth or new subsidiaries</li><li>Heavy Excel use for reporting or consolidation</li><li>Too much manual month-end work</li><li>Restricted/unrestricted funds complexity</li><li>Inventory or project tracking limitations</li><li>Approval processes happening via email/Teams</li><li>Bank rec or AP choking the finance team</li><li>High dependency on “that one person who knows the system”</li></ul></div>
+        <div class="tg"><h5>Technology triggers <span>3</span></h5><ul><li>They run Xero, Sage 50, QuickBooks, or an ageing on-prem system</li><li>Need for deeper integrations with CRM, stock, HR, billing</li><li>Making decisions off delayed / inconsistent data</li></ul></div>
+        <div class="tg"><h5>Behavioural triggers <span>3</span></h5><ul><li>CFO/FD showing frustration with inefficiency</li><li>Leadership pushing for scalability</li><li>Team drowning in admin</li></ul></div>
+      </div>
+      <div class="rule"><div><b>3</b>If you spot three, iplicit is a fit and should be scoped</div><div><b>5</b>If you spot five, it should be an instant referral</div></div>
+    </div>
+  </div>
+  <p class="note">Extracts reformatted for this portfolio. Wording is unchanged from the original documents.</p></section><section class="piece"><header class="shead" id="pitch-deck"><p class="kicker">04 · Pitch decks and personas</p><h2>Pitch deck, buyer personas and AI deck builder</h2><p class="tag">Partner sales deck (20 slides) and buyer persona set</p></header><div class="blocks"><div><h3>Situation</h3><p>Our team and partners were pitching to finance leaders across very different sectors, from financial services to theatres and hire companies. Each conversation needed the message tailored to that buyer.</p></div><div><h3>What I built</h3><p>A deck that starts with the buyer’s problem before it gets to the product, with sector pages and sections on implementation, support and security. Behind it sits a set of buyer personas, from CFO to IT director, setting out each one’s goals, frustrations and who influences them.</p></div><div><h3>What changed</h3><p>I coached reps on running the deck, then built an AI deck builder that produces a pre-approved deck in moments, tailored to the prospect’s sales stage, industry and persona. All eight AEs and our three partner account managers used it.</p></div></div><div class="figs"><figure><img src="assets/deck-problem.png" alt="Slide: the three problems holding mid-market finance teams back"><figcaption>Leading with the problem</figcaption></figure><figure><img src="assets/deck-positioning.png" alt="Slide: bridging the mid-market gap"><figcaption>Positioning against entry-level and enterprise systems</figcaption></figure><figure><img src="assets/deck-implementation.png" alt="Slide: implementation methodology"><figcaption>Making implementation feel predictable</figcaption></figure><figure><img src="assets/persona-director-of-finance.png" alt="Buyer persona card for a Director of Finance"><figcaption>Buyer persona: Director of Finance</figcaption></figure></div></section><section class="piece"><header class="shead" id="soundcheck"><p class="kicker">05 · Coaching and measurement</p><h2>SDR Soundcheck &amp; Spotlight</h2><p class="tag">A coaching model and measurement framework for the SDR team</p></header><div class="blocks"><div><h3>Situation</h3><p>Call listening and team sessions had happened, but not consistently, and they were hard to link to any particular skill gap.</p></div><div><h3>What I built</h3><p>A fortnightly Soundcheck: thirty to forty-five minutes on one skill, using real calls, with each SDR committing to try it before the next session. The gaps it surfaced shaped a monthly Spotlight session with guest speakers and deeper dives. Enablement designed the system and SDR leadership ran it.</p></div><div><h3>What changed</h3><p>Average call scores across the team rose from 3.2 to 3.8. It was measured with data the team already had in Attention.io and HubSpot, so it added very little admin.</p></div></div><figure class="wide"><img src="assets/soundcheck-cycle.png" alt="The Soundcheck and Spotlight cycle: fortnightly Soundcheck sessions surface gaps, which feed a monthly Spotlight, leading to improved capability"><figcaption>The Soundcheck &amp; Spotlight cycle</figcaption></figure><div class="tablewrap"><table class="mtable"><thead><tr><th>Measurement layer</th><th>The question it answers</th><th>Examples of what we tracked</th></tr></thead><tbody>
+<tr><td>1. Programme health</td><td>Are sessions happening, and are people turning up?</td><td>Sessions delivered against plan, attendance, topics covered</td></tr>
+<tr><td>2. Behavioural adoption</td><td>Are SDRs trying what they learned on real calls?</td><td>Commitments completed, examples shared at the next session, scorecard trends by skill</td></tr>
+<tr><td>3. Competency movement</td><td>Are SDRs actually getting better?</td><td>Call scores by competency before and after eight weeks, using the same method both times</td></tr></tbody></table></div></section><section class="piece"><header class="shead" id="performance-gap"><p class="kicker">06 · Needs analysis</p><h2>Diagnosing an SDR performance gap</h2><p class="tag">Case study, 2026</p></header><div class="blocks"><div><h3>The brief</h3><p>The SDR team was falling short of its target of 12 meetings per rep per month. I was asked by the leadership team to find out why and design an enablement programme to close the gap.</p></div><div><h3>What I did</h3><p>I combined CRM meeting data, 90 days of call-recording and coaching data, and nine structured interviews with SDRs, team leads, AEs and senior leaders. Every interview followed the same question set, so the answers could be compared.</p></div><div><h3>What I proposed</h3><p>Five enablement tracks, each with an owner and a measure, starting with quick wins in week one alongside a 90-day build. I also set out clear requests for the issues that sat with other teams.</p></div></div><div class="case"><h4>Learning from the top performer</h4><p>One SDR was consistently booking more meetings than anyone else. Rather than put it down to territory or luck, I compared more than 160 of their calls with nearly 500 calls from the rest of the team. The difference came down to a handful of habits that could be taught, such as opening with a clear reason to talk, layered discovery instead of a script, reframing objections rather than backing down, and owning the next step instead of offering to send an email. I wrote these up as coaching material for the rest of the team.</p>
+<div class="split"><div><h5>Within enablement’s control</h5><ul><li>A regular coaching rhythm</li><li>Top-performer habits written down and taught</li><li>A redesigned ramp for new starters</li><li>Foundational call skills</li></ul></div><div><h5>Needing other teams</h5><ul><li>Team lead roles and accountability</li><li>How inbound leads were shared out</li><li>The profile used for hiring</li><li>Brand awareness in some sectors</li></ul></div></div>
+<p class="whyinc"><b>Why I include this:</b> it is how I approach any enablement request. Before building anything, I check what the data and the people closest to the work say the problem really is, and I’m clear about which parts training can fix and which it can’t.</p></div></section><section class="piece"><header class="shead" id="gap-finder"><p class="kicker">07 · Partner discovery</p><h2>Finance Gap Finder</h2><p class="tag">Interactive partner tool, rebuilt for this portfolio</p></header><div class="blocks"><div><h3>Situation</h3><p>Partners could spot a client who had outgrown their finance system, but turning that into a structured conversation about what to fix depended on product knowledge most of them didn’t have.</p></div><div><h3>What I built</h3><p>An interactive discovery tool. The partner and the client’s finance lead rate their confidence in key finance processes from 0 to 10. Anything scored 6 or below becomes a ranked gap, showing what it costs the client and how iplicit closes it.</p></div><div><h3>What changed</h3><p>More than 20 referral, reseller and ISV partners used it with their clients in its first quarter, and it was directly attributed to 8 referrals in that time. Partners had a structured way into discovery without needing to be product experts.</p></div></div><div class="gf"><div class="gfshots"><figure><img src="assets/gap-finder-overview.jpg" alt="The Finance Gap Finder with an example client loaded"><figcaption>Confidence is rated process by process, and the overall score and ranking update as each slider moves</figcaption></figure></div>
+<div class="gflower"><figure><img src="assets/gap-finder-gaps.png" alt="Two ranked gap cards with recommendations"><figcaption>Each gap is paired with how iplicit closes it and the next question to ask</figcaption></figure>
+<div class="try"><h4>Try it</h4><p>The original tool is no longer accessible, so I rebuilt it to show how it worked. The rebuild runs in any browser.</p><a class="btn" href="gap-finder/">Open the Gap Finder</a>
+<ul class="how"><li><b>1</b><span>Rate each finance process from 0 (not confident) to 10 (fully confident)</span></li><li><b>2</b><span>Review the gaps, ranked from weakest to strongest</span></li><li><b>3</b><span>Copy the summary into a follow-up email to the client</span></li></ul></div></div></div></section><section class="piece"><header class="shead" id="org-chart"><p class="kicker">08 · Deal strategy</p><h2>Navigating the org chart: the W and the M</h2><p class="tag">Rep guide to multi-threading a deal, rebuilt for this portfolio</p></header><div class="blocks"><div><h3>Situation</h3><p>Reps tended to stay with whoever they first got through to. That left deals resting on one contact, and when that person went quiet or lacked authority, the deal stalled.</p></div><div><h3>What I built</h3><p>A one-page guide that turns multi-threading into a shape a rep can remember. Start at the top and your route through the org chart draws a W. Start at the bottom and it draws an M.</p></div><div><h3>Why it works</h3><p>Reps can sketch it in a deal review and see straight away which levels they haven’t reached. It lines up with MEDDICC: the economic buyer sits at the top, the champion in the middle, and the pain usually surfaces at the bottom.</p></div></div><div class="route">
+    <div class="shot"><svg viewBox="0 0 340 222" xmlns="http://www.w3.org/2000/svg" font-family="Carlito, sans-serif"><defs><marker id="wa" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1F5AA8"/></marker></defs><rect x="4" y="14" width="332" height="62" rx="5" fill="#EEF3FA"/><rect x="4" y="84" width="332" height="62" rx="5" fill="#F5F8FC"/><rect x="4" y="154" width="332" height="62" rx="5" fill="#FAFBFD"/><line x1="47.9" y1="65.0" x2="97.1" y2="171.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#wa)"/><line x1="120.8" y1="171.0" x2="154.2" y2="135.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#wa)"/><line x1="185.8" y1="135.0" x2="219.2" y2="171.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#wa)"/><line x1="242.9" y1="171.0" x2="292.1" y2="65.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#wa)"/><text x="12" y="25" font-size="6.6" font-weight="700" letter-spacing=".9" fill="#1F5AA8" stroke="#EEF3FA" stroke-width="3" paint-order="stroke">POWER<tspan font-weight="400" letter-spacing="0" fill="#6B737B" font-style="italic"> · Economic buyer and sign-off</tspan></text><text x="12" y="95" font-size="6.6" font-weight="700" letter-spacing=".9" fill="#1F5AA8" stroke="#F5F8FC" stroke-width="3" paint-order="stroke">INFLUENCERS & CHAMPIONS<tspan font-weight="400" letter-spacing="0" fill="#6B737B" font-style="italic"> · Shape the requirement, sell internally</tspan></text><text x="12" y="165" font-size="6.6" font-weight="700" letter-spacing=".9" fill="#1F5AA8" stroke="#FAFBFD" stroke-width="3" paint-order="stroke">USERS<tspan font-weight="400" letter-spacing="0" fill="#6B737B" font-style="italic"> · Where the pain is felt day to day</tspan></text><rect x="11.0" y="34.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="40" y="50.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">CFO</text><circle cx="68.0" cy="35.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="68.0" y="37.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">1</text><rect x="271.0" y="34.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="300" y="50.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">CEO / Board</text><circle cx="328.0" cy="35.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="328.0" y="37.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">5</text><rect x="76.0" y="104.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="105" y="116.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Head of</text><text x="105" y="124.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Finance</text><rect x="141.0" y="104.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="170" y="116.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">Financial</text><text x="170" y="124.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">Controller</text><circle cx="198.0" cy="105.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="198.0" y="107.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">3</text><rect x="206.0" y="104.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="235" y="116.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">IT / Systems</text><text x="235" y="124.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">lead</text><rect x="11.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="40" y="186.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Credit</text><text x="40" y="194.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">control</text><rect x="76.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="105" y="186.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">Management</text><text x="105" y="194.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">accountant</text><circle cx="133.0" cy="175.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="133.0" y="177.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">2</text><rect x="141.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="170" y="190.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Payroll</text><rect x="206.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="235" y="186.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">AP &</text><text x="235" y="194.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">purchasing</text><circle cx="263.0" cy="175.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="263.0" y="177.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">4</text><rect x="271.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="300" y="186.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Budget</text><text x="300" y="194.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">holders</text></svg></div>
+    <div>
+      <div class="rh"><span class="shape">W</span><h4>Start with power</h4></div>
+      <p class="when"><b>Use it when</b> you can get to the CFO first, through a referral, partner introduction or event.</p>
+      <ol class="st"><li><b>1</b><div><strong>CFO</strong><span>Open at the top. Agree the business problem and get permission to speak to the team.</span></div></li><li><b>2</b><div><strong>Management accountant</strong><span>Go down to the people doing the work and find the detail behind the pain.</span></div></li><li><b>3</b><div><strong>Financial Controller</strong><span>Build your champion. Share what you found and test the case together.</span></div></li><li><b>4</b><div><strong>AP &amp; purchasing</strong><span>Check it with a second user group so the case doesn’t rest on one view.</span></div></li><li><b>5</b><div><strong>CEO / Board</strong><span>Return to power with evidence from the team, and the CFO alongside you, to agree sign-off.</span></div></li></ol>
+    </div>
+  </div>
+  <div class="route">
+    <div class="shot"><svg viewBox="0 0 340 222" xmlns="http://www.w3.org/2000/svg" font-family="Carlito, sans-serif"><defs><marker id="ma" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1F5AA8"/></marker></defs><rect x="4" y="14" width="332" height="62" rx="5" fill="#EEF3FA"/><rect x="4" y="84" width="332" height="62" rx="5" fill="#F5F8FC"/><rect x="4" y="154" width="332" height="62" rx="5" fill="#FAFBFD"/><line x1="47.9" y1="171.0" x2="97.1" y2="65.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#ma)"/><line x1="120.8" y1="65.0" x2="154.2" y2="101.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#ma)"/><line x1="185.8" y1="101.0" x2="219.2" y2="65.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#ma)"/><line x1="242.9" y1="65.0" x2="292.1" y2="171.0" stroke="#1F5AA8" stroke-width="2.6" stroke-linecap="round" marker-end="url(#ma)"/><text x="12" y="25" font-size="6.6" font-weight="700" letter-spacing=".9" fill="#1F5AA8" stroke="#EEF3FA" stroke-width="3" paint-order="stroke">POWER<tspan font-weight="400" letter-spacing="0" fill="#6B737B" font-style="italic"> · Economic buyer and sign-off</tspan></text><text x="12" y="95" font-size="6.6" font-weight="700" letter-spacing=".9" fill="#1F5AA8" stroke="#F5F8FC" stroke-width="3" paint-order="stroke">INFLUENCERS & CHAMPIONS<tspan font-weight="400" letter-spacing="0" fill="#6B737B" font-style="italic"> · Shape the requirement, sell internally</tspan></text><text x="12" y="165" font-size="6.6" font-weight="700" letter-spacing=".9" fill="#1F5AA8" stroke="#FAFBFD" stroke-width="3" paint-order="stroke">USERS<tspan font-weight="400" letter-spacing="0" fill="#6B737B" font-style="italic"> · Where the pain is felt day to day</tspan></text><rect x="76.0" y="34.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="105" y="50.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">CFO</text><circle cx="133.0" cy="35.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="133.0" y="37.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">2</text><rect x="206.0" y="34.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="235" y="50.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">CEO / Board</text><circle cx="263.0" cy="35.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="263.0" y="37.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">4</text><rect x="11.0" y="104.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="40" y="116.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Head of</text><text x="40" y="124.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Finance</text><rect x="141.0" y="104.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="170" y="116.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">Financial</text><text x="170" y="124.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">Controller</text><circle cx="198.0" cy="105.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="198.0" y="107.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">3</text><rect x="271.0" y="104.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="300" y="116.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">IT / Systems</text><text x="300" y="124.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">lead</text><rect x="11.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="40" y="186.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">AP &</text><text x="40" y="194.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">purchasing</text><circle cx="68.0" cy="175.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="68.0" y="177.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">1</text><rect x="76.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="105" y="186.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Management</text><text x="105" y="194.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">accountant</text><rect x="141.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="170" y="190.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Payroll</text><rect x="206.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#C9D3E0" stroke-width=".8" stroke-dasharray="2 1.6"/><text x="235" y="186.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">Credit</text><text x="235" y="194.4" font-size="7" font-weight="400" fill="#8A939C" text-anchor="middle">control</text><rect x="271.0" y="174.0" width="58" height="28" rx="4" fill="#FFFFFF" stroke="#1F5AA8" stroke-width="1.3"/><text x="300" y="186.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">Budget</text><text x="300" y="194.4" font-size="7" font-weight="700" fill="#1F2A36" text-anchor="middle">holders</text><circle cx="328.0" cy="175.0" r="6.2" fill="#1F5AA8" stroke="#fff" stroke-width="1.2"/><text x="328.0" y="177.6" font-size="7.4" font-weight="700" fill="#fff" text-anchor="middle">5</text></svg></div>
+    <div>
+      <div class="rh"><span class="shape">M</span><h4>Start with users</h4></div>
+      <p class="when"><b>Use it when</b> you come in through inbound or outbound with someone who does the work.</p>
+      <ol class="st"><li><b>1</b><div><strong>AP &amp; purchasing</strong><span>Start where the pain is felt. It’s often the easiest way in.</span></div></li><li><b>2</b><div><strong>CFO</strong><span>Climb early. Take what you’ve learned to power before the deal settles at the bottom.</span></div></li><li><b>3</b><div><strong>Financial Controller</strong><span>Build your champion, now with the CFO’s backing.</span></div></li><li><b>4</b><div><strong>CEO / Board</strong><span>Go back to power with the business case and agree the decision process.</span></div></li><li><b>5</b><div><strong>Budget holders</strong><span>Confirm fit with the wider users and plan adoption.</span></div></li></ol>
+    </div>
+  </div>
+  <div class="rulebox"><b>The rule for both</b>Never let a deal sit on one level. The W starts with authority and earns the detail. The M starts with the detail and has to earn authority, so make the first climb early.</div>
+  <p class="note">Recreated for this portfolio from the original guide, which is no longer accessible.</p></section></main>
+<footer class="foot-site"><div class="wrap">Dean Graham · Sales enablement portfolio · <a href="mailto:mrdeangraham@gmail.com">mrdeangraham@gmail.com</a></div></footer>
+</body></html>
